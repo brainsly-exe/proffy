@@ -3,33 +3,50 @@ import React from 'react';
 import WhatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-function TeacherItem() {
+export interface TeacherProps {
+	name: string;
+	avatar: string;
+	bio: string;
+	cost: number;
+	id: number;
+	subject: string;
+	whatsapp: string;
+}
+
+interface TeacherItemProps {
+	teacher: TeacherProps;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher })  => {
+	function createNewConnection() {
+		api.post('connections', {
+			user_id: teacher.id,
+		});
+	}
+
 	return (
 		<article className='teacher-item'>
 			<header>
-				<img src="https://avatars2.githubusercontent.com/u/61285101?s=460&u=46dfd8fe9f42b73055ea16aff71e2b940a9e7fc7&v=4" alt="Pedro Henrique" />
+				<img src={teacher.avatar} alt={teacher.name} />
 				<div>
-					<strong>Pedro Henrique</strong>
-					<span>Javascript</span>
+					<strong>{teacher.name}</strong>
+					<span>{teacher.subject}</span>
 				</div>
 			</header>
 
-			<p>
-				Main Bardo no Lolzinho
-                <br /><br />
-                Um Louco caçador de Sinos, com uma gameplay elevadissima e dono de belíssimos códigos.
-            </p>
+			<p>{teacher.bio}</p>
 
 			<footer>
 				<p>
 					Preço/hora
-                    <strong>R$ 1.000.000,00</strong>
+                    <strong>{teacher.cost}</strong>
 				</p>
-				<button type='button'>
+				<a onClick={createNewConnection} href={`https://wa.me/${teacher.whatsapp}`} target='_blank'>
 					<img src={WhatsappIcon} alt="Whatsapp" />
-                            Entrar em contato
-                        </button>
+                    Entrar em contato
+                </a>
 			</footer>
 		</article>
 	)

@@ -25,13 +25,15 @@
 
 .logo-container h2 {
     font-weight: 500;
-    font-size: 2.4rem;
+    font-size: 2.0rem;
     line-height: 4.6rem;
     margin-top: 0.8rem;
 }
 
 .buttons-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin: 3.2rem 0;
 }
@@ -53,7 +55,7 @@
 }
 
 .buttons-container a:first-child {
-    margin-right: 1.6rem;
+    margin-bottom: 1.6rem;
 }
 
 .buttons-container a img {
@@ -65,7 +67,7 @@
 }
 
 .buttons-container a.give-classes {
-    background: var(--color-secundary);
+    background: var(--color-secondary);
 }
 
 .buttons-container a.study:hover {
@@ -73,7 +75,7 @@
 }
 
 .buttons-container a.give-classes:hover {
-    background: var(--color-secundary-dark);
+    background: var(--color-secondary-dark);
 }
 
 .buttons-container a img {
@@ -127,12 +129,18 @@
     }
 
     .buttons-container {
+        flex-direction: row;
         grid-area: buttons;
         justify-content: flex-start;
     }
 
     .buttons-container a {
         font-size: 2.4rem;
+    }
+
+    .buttons-container a:first-child {
+        margin-right: 2.4rem;
+        margin-bottom: 0;
     }
 
     .total-connections {
